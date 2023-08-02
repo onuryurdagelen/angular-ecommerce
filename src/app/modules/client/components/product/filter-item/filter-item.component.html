@@ -1,0 +1,113 @@
+<div *ngIf="type === 'radio';then radio;"></div>
+<div *ngIf="type === 'selectBox';then selectBox;"></div>
+<div *ngIf="type === 'types';then types;"></div>
+<div *ngIf="type === 'brands';then brands;"></div>
+
+<ng-template #selectBox>
+    <label for="sort" class="form-label">Sort</label>
+    <select id="sort" class="form-select" (change)="onSortSelected($event)">
+        <option *ngFor="let item of data" value="{{item.value}}" [selected]="item.value ==selectedSortType">{{item.text}}</option>
+    </select>
+
+</ng-template>
+
+<ng-template #radio>
+    <div class="card mt-2">
+        <article class="card-group-item">
+            <header class="card-header">
+                <h6 class="title">Choose type </h6>
+            </header>
+            <div class="filter-content">
+                <div class="card-body">
+                <label class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                  <span class="form-check-label">
+                    First hand items
+                  </span>
+                </label>
+                <label class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                  <span class="form-check-label">
+                    Brand new items
+                  </span>
+                </label>
+                <label class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                  <span class="form-check-label">
+                    Some other option
+                  </span>
+                </label>
+                </div> 
+            </div>
+        </article>
+    </div>
+</ng-template>
+<ng-template #types>
+<div class="card mt-2">
+    <article class="card-group-item">
+		<header class="card-header">
+			<h6 class="title">{{title}}</h6>
+		</header>
+		<div class="filter-content">
+			<div class="card-body">
+        <div *ngFor="let item of data">
+          <label class="form-check">
+            <input 
+            class="form-check-input"
+            [checked]="item.id == selectedTypeId" 
+            (click)="onTypeSelected($event)" 
+            type="radio" 
+            [value]="item.id"
+            name="productTypes" 
+            id="product-brand-{{item.id}}">
+            <span class="form-check-label">
+              {{item.name}}
+            </span>
+          </label>
+        </div>
+				<!-- <div class="custom-control custom-checkbox" *ngFor="let item of data">
+				  	<input type="checkbox" class="custom-control-input" id="{{item.name}}">
+				  	<label class="custom-control-label" for="Check1" id="{{item.id}}" data-id="{{item.id}}">{{item.name}}</label>
+				</div> -->
+			</div> 
+		</div>
+	</article> 
+</div>
+</ng-template>
+<ng-template #brands>
+      <div class="card mt-2">
+        <article class="card-group-item">
+        <header class="card-header">
+          <h6 class="title">{{title}}</h6>
+        </header>
+        <div class="filter-content">
+          <div class="card-body">
+            <div *ngFor="let item of data">
+              <label class="form-check">
+                <input 
+                class="form-check-input"
+                (click)="onBrandSelected($event)" 
+                [checked]="item.id == selectedBrandId"  
+                type="radio" 
+                name="productBrands" 
+                [value]="item.id"
+                id="product-brand-{{item.id}}">
+                <span class="form-check-label">
+                  {{item.name}}
+                </span>
+              </label>
+            </div>
+            <!-- <div class="custom-control custom-checkbox" *ngFor="let item of data">
+                <input type="checkbox" class="custom-control-input" id="{{item.name}}">
+                <label class="custom-control-label" for="Check1" id="{{item.id}}" data-id="{{item.id}}">{{item.name}}</label>
+            </div> -->
+          </div> 
+        </div>
+      </article> 
+    </div>
+    
+ 
+</ng-template>
+   <!-- <span class="float-right badge badge-light round">142</span>  -->
+
+

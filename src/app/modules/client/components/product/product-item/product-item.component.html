@@ -1,0 +1,19 @@
+<a class="card" *ngIf="product" routerLink="{{product?.id}}">
+    <section class="panel">
+        <div class="pro-img-box">
+            <img class="img-fluid" src="{{product?.pictureUrl}}" alt="{{product?.name}}" />
+            <a href="#" class="adtocart">
+                <i class="fa fa-shopping-cart"></i>
+            </a>
+        </div>
+
+        <div class="panel-body text-center">
+            <h4>
+                <a href="#" class="pro-title">
+                    {{product?.name}}
+                </a>
+            </h4>
+            <p class="price">${{product?.price}}</p>
+        </div>
+    </section>
+</a>

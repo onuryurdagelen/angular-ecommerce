@@ -1,0 +1,132 @@
+<!-- <app-sidebar></app-sidebar> -->
+<div class="row">
+  <div class="col-md-3">
+  <!-- <app-filter-item [type]="'radio'"></app-filter-item> -->
+  <app-filter-item
+  *ngIf="sortTypes.length > 0" 
+  [type]="'selectBox'"
+  [data]="sortTypes"
+  (sortTypeChanged)="onSortTypeChanged($event)"
+  ></app-filter-item><app-filter-item 
+  (brandIdChanged)="onBrandSelected($event)" 
+  [type]="'brands'"
+  *ngIf="productBrands.length > 0" 
+  [selectedBrandId]="currentBrandId" 
+  [title]="'Brands'" 
+  [data]="productBrands"></app-filter-item>
+  <app-filter-item 
+  [type]="'types'" 
+  [selectedTypeId]="currentTypeId" 
+  (typeIdChanged)="onTypeSelected($event)"
+  [data]="productTypes"
+  *ngIf="productTypes.length > 0"  
+  [title]="'Types'"></app-filter-item>
+  
+  <div class="row mt-2 justify-content-end">
+    <div class="col-md-6">
+      <button class="btn w-100 btn-primary" (click)="applyFilters()"><i class="fas fa-filter"></i> Apply Filters</button>
+    </div>
+  </div>
+
+  </div>
+  <div class="col-md-9">
+    <div class="row align-items-center my-2">
+      <div class="col-md-4">
+        <div class="row">
+          <p>
+            Showing <b>{{ startShowedNumber }}</b> -
+            <b>{{ endShowedNumber }}</b> of <b>{{count}}</b> Results
+          </p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="searchProduct"
+                #searchTerm
+                (keyup)="onSearchProduct($event)"
+                aria-describedby="searchProductHelp"
+                placeholder="Search product..."
+              />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-6">
+                <button type="button" class="w-100 btn btn-outline-primary">
+                  Search
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button type="button" class="w-100 btn btn-outline-success">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-2" *ngIf="pagination == null || pagination?.data.length == 0; else showProducts">
+        <h3>Product list is empty</h3>
+    </div>
+
+    <ng-template #showProducts>
+      <!--Products starts here-->
+      <div class="row product-list">
+        <div
+          *ngFor="
+            let product of products
+              | paginate
+                : {
+                    itemsPerPage: pageSize,
+                    currentPage: currentIndex,
+                    totalItems: count
+                  }
+          "
+          class="col-md-4 mb-3"
+        >
+          <app-product-item [product]="product"></app-product-item>
+          <!-- <div class="card">
+        <section class="panel">
+            <div class="pro-img-box">
+                <img src="{{product.pictureUrl}}" alt="{{product.name}}" />
+                <a href="#" class="adtocart">
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
+            </div>
+    
+            <div class="panel-body text-center">
+                <h4>
+                    <a href="#" class="pro-title">
+                        {{product.name}}
+                    </a>
+                </h4>
+                <p class="price">${{product.price}}</p>
+            </div>
+        </section>
+    </div> -->
+        </div>
+      </div>
+      <!--Products ends here-->
+      <!--Pagination section starts here-->
+      <div class="row my-2 gallery-bottom" *ngIf="paginationArr.length > 1">
+        <div class="d-flex justify-content-center">
+          <pagination-controls
+          
+            previousLabel="Prev"
+            nextLabel="Next"
+            (pageChange)="onTableDataChange($event)"
+          >
+          </pagination-controls>
+        </div>
+      </div>
+      <!--Pagination section ends here-->
+    </ng-template>
+  </div>
+</div>

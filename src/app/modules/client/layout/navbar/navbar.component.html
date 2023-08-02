@@ -1,0 +1,49 @@
+<header class="header-area overlay">
+    <nav class="navbar navbar-expand-md navbar-dark">
+		<div class="container-fluid">
+			
+			
+			<button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
+				<span class="menu-icon-bar"></span>
+				<span class="menu-icon-bar"></span>
+				<span class="menu-icon-bar"></span>
+			</button>
+			
+			<div id="main-nav" class="collapse navbar-collapse">
+                <div class="col-md-3">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <a routerLink="" class="navbar-brand">ECommerce.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <ul class="navbar-nav ml-auto">
+                                <li><a 
+                                    routerLinkActive="active" 
+                                    routerLink="" 
+                                    [routerLinkActiveOptions]="{exact:true}"
+                                    class="nav-item nav-link active">Home</a></li>
+                                <li><a routerLinkActive="active" routerLink="products" class="nav-item nav-link">Shop</a></li>
+                                <li><a routerLinkActive="active" routerLink="contact" class="nav-item nav-link">Contact</a></li>
+                                <li><a routerLinkActive="active" routerLink="test-error" class="nav-item nav-link">Errors</a></li>
+                            </ul>
+                        </div>
+                       
+                    </div>
+                </div>
+				<div class="col-md-3">
+                    <div class="row">
+                        <ul class="navbar-nav ml-auto">
+                            <li><a routerLink="cart" class="nav-item nav-link"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+                            <li><a routerLink="login" class="nav-item nav-link"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                            <li><a routerLink="login" class="nav-item nav-link"><i class="fas fa-user"></i> Sign Up</a></li>
+                        </ul>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</nav>
+</header>

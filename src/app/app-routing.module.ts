@@ -23,7 +23,6 @@ const routes: Routes = [
       {
         path:'',
         component:HomeComponent,
-       
         loadChildren:() => import('./modules/client/pages/home/home.module').then(m => m.HomeModule)
       },
       {

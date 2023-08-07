@@ -1,19 +1,19 @@
-<a class="card" *ngIf="product" routerLink="{{product?.id}}">
+<a class="card" *ngIf="product">
     <section class="panel">
         <div class="pro-img-box">
             <img class="img-fluid" src="{{product?.pictureUrl}}" alt="{{product?.name}}" />
-            <a href="#" class="adtocart">
+            <a (click)="updateBasket(product)" class="adtocart">
                 <i class="fa fa-shopping-cart"></i>
             </a>
         </div>
 
-        <div class="panel-body text-center">
+        <a routerLink="{{product?.id}}" class="panel-body text-center">
             <h4>
                 <a href="#" class="pro-title">
                     {{product?.name}}
                 </a>
             </h4>
             <p class="price">${{product?.price}}</p>
-        </div>
+        </a>
     </section>
 </a>

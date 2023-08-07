@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router,ParamMap } from '@angular/router';
+import { Basket } from 'src/app/models/basket';
 import { Pagination } from 'src/app/models/pagination';
 import { ProductBrand, ProductSpecParams, ProductToReturnDto, ProductType } from 'src/app/models/product';
 import { SortType } from 'src/app/models/sort';
@@ -24,6 +25,7 @@ sortTypes:SortType[] = [
 products:ProductToReturnDto[] = [];
 productBrands:ProductBrand[] = [];
 productTypes:ProductType[] = [];
+cart:Basket;
 paginationArr: any[] = [];
 pagination:Pagination<ProductToReturnDto[]>;
 currentBrandId?:number = 0;
@@ -61,6 +63,14 @@ constructor(private shopService:ShopService,
       pageSize:this.pageSize,
       pageIndex:this.currentIndex
     });
+
+    this.shopService.getBasketById('basket1').subscribe({
+      next:((response:Basket) => {
+        this.cart = response;
+      }),
+      error:((error:any)=> console.log(error)),
+      complete:(() => console.log("ProductIndex ngOnInit completed!"))
+    })
     
   }
   calculatePagination(){

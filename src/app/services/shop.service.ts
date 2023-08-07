@@ -4,6 +4,8 @@ import { Pagination } from '../models/pagination';
 import { ProductSpecParams, ProductToReturnDto } from '../models/product';
 import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { Basket } from '../models/basket';
+import { ClientResponse } from '../models/response';
 @Injectable({
   providedIn: 'root'
 })
@@ -53,6 +55,19 @@ export class ShopService {
   }
   getProductById(id:number):Observable<ProductToReturnDto>{
     return this.httpClient.get<ProductToReturnDto>(this.baseUrl + 'products' +'/'+id)
+  }
+  updateBasket(basket:Partial<Basket>):Observable<Basket>{
+    return this.httpClient.post<Basket>(this.baseUrl + 'basket',basket)
+  }
+  getBasketById(id:string):Observable<Basket>{
+    let params = new HttpParams();
+    params = params.append('id',id);
+    return this.httpClient.get<Basket>(this.baseUrl + 'basket',{params});
+  }
+  removeCartItem(id:number):Observable<ClientResponse>{
+    let params = new HttpParams();
+    params = params.append('id',id);
+    return this.httpClient.delete<ClientResponse>(this.baseUrl + 'basket',{params});
   }
 }
 export class RequestParameters{

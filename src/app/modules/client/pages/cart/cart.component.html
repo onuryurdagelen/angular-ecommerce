@@ -1,5 +1,5 @@
-<div *ngIf="cart != null && cart.items.length > 0;then items;"></div>
-<div *ngIf="cart != null && cart.items.length == 0;then empty;"></div>
+<div *ngIf="basket != null && basket.items.length > 0;then items;"></div>
+<div *ngIf="basket != null && basket.items.length == 0;then empty;"></div>
 
 
 <!-- Alert-->
@@ -12,33 +12,33 @@
 <ng-template #items>
     <div
     class="cart-item d-md-flex justify-content-between"
-    *ngFor="let cartItem of cart.items"
+    *ngFor="let basketItem of basket.items"
   >
-    <span class="remove-item" (click)="removeCartItem(cartItem.id)"><i class="fa fa-times"></i></span>
+    <span class="remove-item"><i class="fa fa-times"></i></span>
     <div class="px-3 my-3">
       <a class="cart-item-product" href="#">
         <div class="cart-item-product-thumb">
           <img
-            src="{{cartItem.pictureUrl}}"
-            alt="{{cartItem.productName}}"
+            src="{{basketItem.pictureUrl}}"
+            alt="{{basketItem.productName}}"
           />
         </div>
         <div class="cart-item-product-info">
-          <h4 class="cart-item-product-title">{{cartItem.productName}}</h4>
-          <span><strong>Type:</strong> {{cartItem.type}}</span
-          ><span><strong>Brand:</strong> {{cartItem.brand}}</span>
+          <h4 class="cart-item-product-title">{{basketItem.productName}}</h4>
+          <span><strong>Type:</strong> {{basketItem.type}}</span
+          ><span><strong>Brand:</strong> {{basketItem.brand}}</span>
         </div>
       </a>
     </div>
     <div class="px-3 my-3 text-center">
       <div class="cart-item-label">Quantity</div>
       <div class="count-input">
-        <input [type]="'number'" min="1" class="form-control number-to-text" value="{{cartItem.quantity}}"/>
+        <input [type]="'number'" min="1" class="form-control number-to-text" value="{{basketItem.quantity}}"/>
       </div>
     </div>
     <div class="px-3 my-3 text-center">
       <div class="cart-item-label">Subtotal</div>
-      <span class="text-xl font-weight-medium">{{cartItem.price * cartItem.quantity | currency}}</span>
+      <span class="text-xl font-weight-medium">{{basketItem.price * basketItem.quantity | currency}}</span>
     </div>
     <div class="px-3 my-3 text-center">
       <div class="cart-item-label">Discount</div>
@@ -46,6 +46,12 @@
     </div>
   </div>
   
+<div class="row justify-content-end">
+  <div class="col-md-4 d-flex justify-content-end">
+    <span>Basket Total: {{basketTotal | currency}}</span>
+  </div>
+</div>
+
   <!-- Buttons-->
   <hr class="my-2" />
   <div class="row pt-3 pb-5 mb-2">

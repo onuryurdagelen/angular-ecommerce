@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Basket } from 'src/app/models/basket';
+import { BasketService } from 'src/app/services/basket.service';
 import { ShopService } from 'src/app/services/shop.service';
 
 @Component({
@@ -8,26 +9,17 @@ import { ShopService } from 'src/app/services/shop.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit{
-  cart:Basket;
-  constructor(private shopService:ShopService) {
-
+  basket:Basket;
+  basketTotal:number;
+  constructor(public basketService:BasketService) {
   }
   ngOnInit(): void {
-    this.shopService.getBasketById('basket1').subscribe({
-      next:((response:Basket) => {
-        console.log(response);
-        this.cart = response;
-      }),
-      error:((error:any)=> console.log(error)),
-      complete:(() => console.log("Cart ngOnInit completed!"))
-    })
+    // this.getBasketById('basket1');
+    const basketId:string = localStorage.getItem('basket_id'); 
+    this.basketService.getBasket(basketId);
+    this.basketService.basketSource$.subscribe(basket =>this.basket = basket);
+    this.basketService.basketTotalSource$.subscribe(basketTotal => this.basketTotal = basketTotal);
   }
-  removeCartItem(id:number){
-    this.shopService.removeCartItem(id)
-    .subscribe({
-     error:((error:any)=> console.log(error)),
-     complete:(() => console.log("Cart removeCartItem completed!"))
-    })
-  }
+
 
 }

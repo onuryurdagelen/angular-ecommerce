@@ -6,14 +6,14 @@ import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Basket } from '../models/basket';
 import { ClientResponse } from '../models/response';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
-
-  constructor(private httpClient:HttpClient,
-    @Inject("baseUrl") private baseUrl:string) { }
-  private generateUrl(requestParameter: Partial<RequestParameters>): string {
+  baseUrl = environment.apiUrl;
+  constructor(private httpClient:HttpClient) { }
+  protected generateUrl(requestParameter: Partial<RequestParameters>): string {
     return `${requestParameter.baseUrl ? requestParameter.baseUrl : this.baseUrl}${requestParameter.controller}${requestParameter.action ? `/${requestParameter.action}` : ""}`;
   }
   get<TRequest, TResponse>(
@@ -56,19 +56,7 @@ export class ShopService {
   getProductById(id:number):Observable<ProductToReturnDto>{
     return this.httpClient.get<ProductToReturnDto>(this.baseUrl + 'products' +'/'+id)
   }
-  updateBasket(basket:Partial<Basket>):Observable<Basket>{
-    return this.httpClient.post<Basket>(this.baseUrl + 'basket',basket)
-  }
-  getBasketById(id:string):Observable<Basket>{
-    let params = new HttpParams();
-    params = params.append('id',id);
-    return this.httpClient.get<Basket>(this.baseUrl + 'basket',{params});
-  }
-  removeCartItem(id:number):Observable<ClientResponse>{
-    let params = new HttpParams();
-    params = params.append('id',id);
-    return this.httpClient.delete<ClientResponse>(this.baseUrl + 'basket',{params});
-  }
+  
 }
 export class RequestParameters{
   controller?:string;

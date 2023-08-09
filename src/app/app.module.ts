@@ -23,6 +23,7 @@ import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { BasketService } from './services/basket.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,4 +65,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  
+
+
+ }

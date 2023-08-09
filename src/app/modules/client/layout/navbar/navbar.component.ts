@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { IBasket, IBasketItem } from 'src/app/models/basket';
+import { BasketService } from 'src/app/services/basket.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  
+  basket:IBasket;
+
+  constructor(public basketService:BasketService) {
+    this.basketService.basketSource$.subscribe(basket => {
+      this.basket = basket!;
+    });
+  }
+  getCount(items:IBasketItem[]):number{
+    return items.reduce((sum,item)=> sum + item.quantity,0)
+  }
 
 }

@@ -4,6 +4,7 @@ import { Basket } from 'src/app/models/basket';
 import { Pagination } from 'src/app/models/pagination';
 import { ProductBrand, ProductSpecParams, ProductToReturnDto, ProductType } from 'src/app/models/product';
 import { SortType } from 'src/app/models/sort';
+import { BasketService } from 'src/app/services/basket.service';
 import { ShopService } from 'src/app/services/shop.service';
 
 @Component({
@@ -41,6 +42,7 @@ threeDot:boolean =false;
 /*Properties end here */
 
 constructor(private shopService:ShopService,
+  private basketService:BasketService,
   private router:Router,
       private activeRoute: ActivatedRoute
   ) {
@@ -63,14 +65,6 @@ constructor(private shopService:ShopService,
       pageSize:this.pageSize,
       pageIndex:this.currentIndex
     });
-
-    this.shopService.getBasketById('basket1').subscribe({
-      next:((response:Basket) => {
-        this.cart = response;
-      }),
-      error:((error:any)=> console.log(error)),
-      complete:(() => console.log("ProductIndex ngOnInit completed!"))
-    })
     
   }
   calculatePagination(){

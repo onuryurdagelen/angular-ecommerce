@@ -88,10 +88,23 @@ export class BasketService extends ShopService {
     localStorage.setItem('basket_id',basket.id);
     return basket;
   }
-  removeBasketItem(basketId:string,id:number):Observable<ClientResponse>{
+  removeBasketItem(basketId:string,id:number):void{
     let params = new HttpParams();
     params = params.append('basketId',basketId);
     params = params.append('id',id);
-    return this.http.delete<ClientResponse>(this.baseUrl + 'basketItem',{params});
+    this.http
+        .delete<ClientResponse>(this.baseUrl + 'Basket/basketItem',{params})
+        .subscribe({
+        next:((res:any)=> {
+          console.log(res);
+          this.basketSource.next(res.data);
+          this.calculateBasketTotal();
+        }),
+        error:((error)=> console.log(error)),
+        complete:(()=> console.log("removeBasketItem completed."))
+      })
+
+    //gelen değeri this.basketSource.next(basket) ile yakalayıp
+    // basket source'dan gelen data'yı cart'taki basket ile eşleştir.
   }
 }

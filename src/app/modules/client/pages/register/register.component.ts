@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-
+//TODO Register component'i doldur.Kullanıcı kayıt işlemlerini gerçekleştir.(Jwt vs.)
 }

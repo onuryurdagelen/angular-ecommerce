@@ -8,6 +8,10 @@ import { ShopService } from 'src/app/services/shop.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
+//TODO cart-summary component'i içini doldur ve cart-summary tasarımını tamamla.
+//TODO cart-summary => order sub  total,shipping total,order total
+//TODO Bu kısmı cart-item component'i içine taşı.
+//TODO cart item'a artı(+) ve (-) icon'ları ekle.Basıldığında cart item quantity artma-azaltma işlemi gerçekleştirsin.
 export class CartComponent implements OnInit{
   basket:Basket;
   basketTotal:number;
@@ -20,6 +24,16 @@ export class CartComponent implements OnInit{
     this.basketService.basketSource$.subscribe(basket =>this.basket = basket);
     this.basketService.basketTotalSource$.subscribe(basketTotal => this.basketTotal = basketTotal);
   }
-
-
+  removeCartItem(id:number){
+    this.basketService.removeBasketItem(this.basket.id,id)
+    this.basketService.basketSource$.subscribe(basket => {
+      this.basket = basket;
+      console.log(basket);
+    });
+    this.basketService.basketTotalSource$.subscribe(basketTotal => {
+      this.basketTotal = basketTotal;
+      console.log(basketTotal);
+    });
+  }
 }
+

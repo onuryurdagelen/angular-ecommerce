@@ -14,7 +14,9 @@
     class="cart-item d-md-flex justify-content-between"
     *ngFor="let basketItem of basket.items"
   >
-    <span class="remove-item"><i class="fa fa-times"></i></span>
+
+  
+    <span class="remove-item" (click)="removeCartItem(basketItem.id)"><i class="fa fa-times"></i></span>
     <div class="px-3 my-3">
       <a class="cart-item-product" href="#">
         <div class="cart-item-product-thumb">
@@ -33,6 +35,7 @@
     <div class="px-3 my-3 text-center">
       <div class="cart-item-label">Quantity</div>
       <div class="count-input">
+       
         <input [type]="'number'" min="1" class="form-control number-to-text" value="{{basketItem.quantity}}"/>
       </div>
     </div>
@@ -45,7 +48,7 @@
       <span class="text-xl font-weight-medium">$35.00</span>
     </div>
   </div>
-  
+
 <div class="row justify-content-end">
   <div class="col-md-4 d-flex justify-content-end">
     <span>Basket Total: {{basketTotal | currency}}</span>

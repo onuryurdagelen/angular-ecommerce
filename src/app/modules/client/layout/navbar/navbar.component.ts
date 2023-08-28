@@ -8,7 +8,7 @@ import { BasketService } from 'src/app/services/basket.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  
+   //TODO: Home ve Shop navigation aynı anda seçili geliyor.Bu durum böyle olmamalı.Çöz
   basket:IBasket;
 
   constructor(public basketService:BasketService) {

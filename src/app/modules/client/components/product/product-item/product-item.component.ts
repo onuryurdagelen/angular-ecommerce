@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import {  Basket,IBasket, IBasketItem } from 'src/app/models/basket';
 import { ProductToReturnDto } from 'src/app/models/product';
 import { BasketService } from 'src/app/services/basket.service';
 import { ShopService } from 'src/app/services/shop.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-item',
@@ -12,10 +13,12 @@ import { ShopService } from 'src/app/services/shop.service';
 export class ProductItemComponent implements OnInit{
   @Input() product?:ProductToReturnDto;
   @Input() cart:Basket;
-  constructor(private basketService:BasketService) {
+  constructor(
+    @Inject('baseUrlForFiles') public baseUrlForFiles:string,
+    private basketService:BasketService) {
   }
   ngOnInit(): void {
-    console.log(this.cart);
+    console.log(this.product);
   }
 
   addOrUpdateBasket(product:ProductToReturnDto){

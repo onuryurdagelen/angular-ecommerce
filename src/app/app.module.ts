@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonComponent } from './modules/client/components/button/button.component';
-import { CardComponent } from './modules/client/components/card/card.component';
 import { TypeheadComponent } from './modules/client/components/typehead/typehead.component';
 import { TabComponent } from './modules/client/components/tab/tab.component';
 import { AlertComponent } from './modules/client/components/alert/alert.component';
@@ -24,11 +23,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BasketService } from './services/basket.service';
+import { CartSummaryComponent } from './modules/client/components/cart-summary/cart-summary.component';
+import { CartItemComponent } from './modules/client/components/cart-item/cart-item.component';
+import { ProfileComponent } from './modules/client/pages/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
     ButtonComponent,
-    CardComponent,
     TypeheadComponent,
     TabComponent,
     AlertComponent,
@@ -37,6 +38,8 @@ import { BasketService } from './services/basket.service';
     TestErrorComponent,
     NotFoundErrorComponent,
     MaintenanceComponent,
+    CartSummaryComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,7 @@ import { BasketService } from './services/basket.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     { provide: "baseUrl", useValue: "https://localhost:5000/api/",multi:true},
-    { provide: "baseUrlForFiles", useValue: "https://localhost:5000/api/", multi: true },
+    { provide: "baseUrlForFiles", useValue: "https://localhost:5000/", multi: true },
     {provide: HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},
     {provide: HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}
   ],

@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+//TODO Login component'i doldur.Kullanıcı giriş işlemlerini gerçekleştir.(Jwt vs.)
 
 }

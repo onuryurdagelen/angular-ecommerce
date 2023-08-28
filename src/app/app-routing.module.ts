@@ -12,6 +12,7 @@ import { TestErrorComponent } from './shared/pages/test-error/test-error.compone
 import { NotFoundErrorComponent } from './shared/pages/not-found-error/not-found-error.component';
 import { ServerErrorPageComponent } from './shared/pages/server-error-page/server-error-page.component';
 import { MaintenanceComponent } from './shared/pages/maintenance/maintenance.component';
+import { ProfileComponent } from './modules/client/pages/profile/profile.component';
 
 const routes: Routes = [
   //Client Module
@@ -24,6 +25,12 @@ const routes: Routes = [
         path:'',
         component:HomeComponent,
         loadChildren:() => import('./modules/client/pages/home/home.module').then(m => m.HomeModule)
+      },
+      {
+        path:'profile',
+        component:ProfileComponent,
+        data:{breadcrumb:'Profile'},
+        loadChildren:() => import('./modules/client/pages/profile/profile.module').then(m => m.ProfileModule)
       },
       {
         path:'products',

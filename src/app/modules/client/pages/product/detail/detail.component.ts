@@ -11,7 +11,7 @@ import { BreadcrumbService } from 'xng-breadcrumb';
 })
 export class ProductDetailComponent {
   @Input() product?:ProductToReturnDto;
-
+//TODO Ürün detay sayfasını düzenle.Ürünün adedi artma-azaltma için (+) ve (-) icon'lu buttonlar koy.
   constructor(private shopService:ShopService,
     private bcService:BreadcrumbService,
     private activeRoute: ActivatedRoute

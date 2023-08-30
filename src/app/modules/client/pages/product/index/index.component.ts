@@ -49,7 +49,6 @@ constructor(private shopService:ShopService,
 }
   ngOnInit(): void {
     //initially products brands
-    console.log("ngOnInit çalıştı");
     this.getBrands();
 
     //initially products types
@@ -80,13 +79,9 @@ constructor(private shopService:ShopService,
     if (this.count % this.pageSize) {
       this.paginationArr.push(this.paginationArr.length + 1);
     }
-
-    console.log("pagination length ",this.paginationArr.length)
-    console.log("current Index ",this.currentIndex)
     this.startShowedNumber += this.pageSize * (this.currentIndex -1);
    
     if(this.currentIndex == this.paginationArr.length){
-      console.log("girdi");
         if(this.paginationArr.length > 1)
           this.endShowedNumber = (this.pageSize *  this.currentIndex) - ((this.pageSize *  this.currentIndex) % this.count);
         else 
@@ -108,7 +103,6 @@ constructor(private shopService:ShopService,
     this.shopService.getProducts(productParams).subscribe({
       next:((response:Pagination<ProductToReturnDto[]>) => {
         this.pagination = response;
-        console.log(this.pagination);
         this.products = response.data;
         this.count = response.count;
         this.pageSize = response.pageSize;
@@ -116,7 +110,7 @@ constructor(private shopService:ShopService,
         this.calculatePagination();
       }),
       error:((error:any)=> console.log(error)),
-      complete:(() => console.log("getProducts() completed!"))
+      complete:(() => {})
     });
   }
   //This methods provides getting all products brands
@@ -131,9 +125,7 @@ constructor(private shopService:ShopService,
       error:((error:any)=> {
         console.log(error);
       }),
-      complete:(() => {
-        console.log("getBrands() completed!");
-      })
+      complete:(() => {})
     })
   }
   //This methods provides getting all products types
@@ -148,9 +140,7 @@ constructor(private shopService:ShopService,
     error:((error:any)=> {
       console.log(error);
     }),
-    complete:(() => {
-      console.log("getTypes() completed!");
-    })
+    complete:(() => {})
   })
  }
 
@@ -180,16 +170,13 @@ constructor(private shopService:ShopService,
 
  onBrandSelected(brandId:number){
   this.currentBrandId = brandId;
-  console.log(this.currentBrandId)
   //console.log("brandId in ProductIndexComponent",brandId)
 }
 onSortTypeChanged(sortType:string){
   this.currentSortType.value = sortType;
-  console.log("current sort type in ProductIndexComponent ",this.currentSortType.value);
 }
 onTypeSelected(typeId:number){
   this.currentTypeId = typeId;
-  console.log(this.currentTypeId);
   //console.log("brandId in ProductIndexComponent",typeId)
 }
 applyFilters(){

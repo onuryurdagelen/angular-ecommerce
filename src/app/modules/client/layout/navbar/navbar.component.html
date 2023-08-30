@@ -41,12 +41,22 @@
                             <li><a routerLink="cart" class="nav-item nav-link"><i class="fas fa-shopping-cart"></i>
                                 <span *ngIf="basketService.basketSource$ | async" class='badge badge-warning' id='lblCartCount'>
                                     {{getCount(basket.items)}}</span></a>
-                                
                             </li>
-                            <li><a routerLink="profile" class="nav-item nav-link"><i class="fas fa-user"></i> My Profile</a></li>
-                            <li><a routerLink="login" class="nav-item nav-link"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-                            <li><a routerLink="login" class="nav-item nav-link"><i class="fas fa-user"></i> Sign Up</a></li>
+                          <ng-container *ngIf="contentLoaded">
+                            <ng-container *ngIf="(accountService.currentUser$ | async)">
+                                <li><a routerLink="profile" class="nav-item nav-link">
+                                    <img class="profile-img" *ngIf="!currentUser?.pictureUrl" src="../../../../../assets/default-user-icon-13.jpg" alt="default_user.png">
+                                    <img class="profile-img" *ngIf="currentUser?.pictureUrl" src="{{currentUser.pictureUrl}}" alt="{{currentUser.displayName}}">
+                                    {{currentUser.displayName}}</a></li>
+                               </ng-container>
+                               <ng-container *ngIf="(accountService.currentUser$ | async) === null">
+                                <li><a routerLink="login" class="nav-item nav-link"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                                <li><a routerLink="login" class="nav-item nav-link"><i class="fas fa-user"></i> Sign Up</a></li>
+                               </ng-container>
+                          </ng-container>
+                           
                         </ul>
+                        
                     </div>
                 </div>
 			</div>

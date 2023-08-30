@@ -6,7 +6,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ClientResponse } from '../models/response';
 import { environment } from 'src/environments/environment';
 import { ProductToReturnDto } from '../models/product';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -48,8 +47,10 @@ export class BasketService extends ShopService {
   }
 
   addItemToBasket(item:ProductToReturnDto,quantity = 1){
+    debugger;
     const itemToAdd:IBasketItem = this.mapProductItemToBasketItem(item);
     const basket = this.getCurrentBasketValue() ?? this.createBasket();
+    console.log(basket);
     basket.items = this.addOrUpdateItem(basket.items,itemToAdd,quantity);
     this.setBasket(basket);
   }
@@ -84,6 +85,7 @@ export class BasketService extends ShopService {
     return basketItems;
   }
   private createBasket():Basket{
+    debugger;
     const basket = new Basket();
     localStorage.setItem('basket_id',basket.id);
     return basket;

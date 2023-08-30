@@ -18,7 +18,6 @@ export class ProductItemComponent implements OnInit{
     private basketService:BasketService) {
   }
   ngOnInit(): void {
-    console.log(this.product);
   }
 
   addOrUpdateBasket(product:ProductToReturnDto){

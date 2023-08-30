@@ -9,6 +9,8 @@ import { ProductIndexModule } from '../pages/product/index/index.module';
 import { ProductItemModule } from '../components/product/product-item/product-item.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfileModule } from '../pages/profile/profile.module';
+import { RegisterModule } from '../pages/register/register.module';
+import { LoginModule } from '../pages/login/login.module';
 const routes:Routes = [
   {
     path: '',
@@ -24,6 +26,8 @@ const routes:Routes = [
     RouterModule.forRoot(routes),
     NavbarModule,
     CartModule,
+    RegisterModule,
+    LoginModule,
     ProductIndexModule,
     ProfileModule,
     ProductItemModule,

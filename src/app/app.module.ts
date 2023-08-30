@@ -26,6 +26,7 @@ import { BasketService } from './services/basket.service';
 import { CartSummaryComponent } from './modules/client/components/cart-summary/cart-summary.component';
 import { CartItemComponent } from './modules/client/components/cart-item/cart-item.component';
 import { ProfileComponent } from './modules/client/pages/profile/profile.component';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,11 +44,11 @@ import { ProfileComponent } from './modules/client/pages/profile/profile.compone
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    RegisterModule,
     NgxSpinnerModule.forRoot({type: 'ball-atom'}),
-    LoginModule,
     BrowserAnimationsModule,
     LayoutModule,
     TooltipModule.forRoot(),

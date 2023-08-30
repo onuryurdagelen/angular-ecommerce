@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Basket } from 'src/app/models/basket';
 import { BasketService } from 'src/app/services/basket.service';
 import { ShopService } from 'src/app/services/shop.service';
@@ -15,7 +15,7 @@ import { ShopService } from 'src/app/services/shop.service';
 export class CartComponent implements OnInit{
   basket:Basket;
   basketTotal:number;
-  constructor(public basketService:BasketService) {
+  constructor(@Inject('baseUrlForFiles') public baseUrlForFiles:string,public basketService:BasketService) {
   }
   ngOnInit(): void {
     // this.getBasketById('basket1');

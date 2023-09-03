@@ -1,1 +1,17 @@
-<p>dropdown works!</p>
+<ul  
+    *dropdownMenu 
+    class="dropdown-menu"
+    role="menu"
+    id="{{ariaLabelId}}"
+    [attr.aria-labelledby]="ariaLabelId">
+    <li style="cursor:pointer;" role="menuitem" *ngFor="let link of navLinks">
+        <i *ngIf="link.icon" class="{{link.icon}}"></i>
+        <a 
+        *ngIf="link.hasLink"
+        class="dropdown-item" 
+        routerLink="{{link.link}}">
+        {{link.value}}
+        </a>
+        <span (click)="link.onClick()" class="dropdown-item" *ngIf="!link.hasLink">{{link.value}}</span>
+        </li>
+</ul>

@@ -44,10 +44,29 @@
                             </li>
                           <ng-container *ngIf="contentLoaded">
                             <ng-container *ngIf="(accountService.currentUser$ | async)">
-                                <li><a routerLink="profile" class="nav-item nav-link">
+                                <li class="nav-item nav-link">
+
+                                
+                                <div class="btn-group row justify" dropdown>
+                                    <a id="button-basic" 
+                                        dropdownToggle type="button" 
+                                        style="cursor:pointer;text-decoration: none;" 
+                                        class="text-white dropdown-toggle"
+                                            aria-controls="dropdown-basic">
+                                            <img class="profile-img" *ngIf="!currentUser?.pictureUrl" src="../../../../../assets/default-user-icon-13.jpg" alt="default_user.png">
+                                    <img class="profile-img" *ngIf="currentUser?.pictureUrl" src="{{currentUser.pictureUrl}}" alt="{{currentUser.displayName}}">
+                                            {{currentUser.displayName}} 
+                                    </a>
+                                    <app-dropdown 
+                                    id="dropdown-basic" 
+                                    [ariaLabelId]="'dropdown-basic'" 
+                                    [navLinks]="navLinks"></app-dropdown>
+                                  </div>
+                                </li>
+                                <!-- <li><a routerLink="profile" class="nav-item nav-link">
                                     <img class="profile-img" *ngIf="!currentUser?.pictureUrl" src="../../../../../assets/default-user-icon-13.jpg" alt="default_user.png">
                                     <img class="profile-img" *ngIf="currentUser?.pictureUrl" src="{{currentUser.pictureUrl}}" alt="{{currentUser.displayName}}">
-                                    {{currentUser.displayName}}</a></li>
+                                    {{currentUser.displayName}}</a></li> -->
                                </ng-container>
                                <ng-container *ngIf="(accountService.currentUser$ | async) === null">
                                 <li><a routerLink="login" class="nav-item nav-link"><i class="fas fa-sign-in-alt"></i> Login</a></li>

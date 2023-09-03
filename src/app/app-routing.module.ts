@@ -36,8 +36,7 @@ const routes: Routes = [
         path:'products',
         component:ProductIndexComponent,
         data:{breadcrumb:'Products'},
-        loadChildren:() => import('./modules/client/pages/product/index/index.module')
-        .then(m=> m.ProductIndexModule),
+        loadChildren:() => import('./modules/client/pages/product/index/index.module').then(m=> m.ProductIndexModule),
       },
       {
         path:'products/:id',

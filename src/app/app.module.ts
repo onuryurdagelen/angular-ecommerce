@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from  '@angular/common/http';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,7 +36,6 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     TabComponent,
     AlertComponent,
     DatetimepickerComponent,
-    DropdownComponent,
     TestErrorComponent,
     NotFoundErrorComponent,
     MaintenanceComponent,

@@ -13,6 +13,8 @@ import { NotFoundErrorComponent } from './shared/pages/not-found-error/not-found
 import { ServerErrorPageComponent } from './shared/pages/server-error-page/server-error-page.component';
 import { MaintenanceComponent } from './shared/pages/maintenance/maintenance.component';
 import { ProfileComponent } from './modules/client/pages/profile/profile.component';
+import { CheckoutComponent } from './modules/client/pages/checkout/checkout.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   //Client Module
@@ -52,23 +54,33 @@ const routes: Routes = [
         loadChildren:() => import('./modules/client/pages/cart/cart.module')
         .then(m => m.CartModule)
       },
+      {
+        path:'checkout',
+        canActivate:[AuthGuard],
+        component:CheckoutComponent,
+        data:{breadcrumb:'Checkout'},
+        loadChildren:() => import('./modules/client/pages/checkout/checkout.module')
+        .then(m => m.CheckoutModule)
+      },
+      {
+        path:'login',
+        data:{breadcrumb:{alias:'Login'}},
+        component:LoginComponent,
+        loadChildren:() => import('./modules/client/pages/login/login.module')
+        .then(m => m.LoginModule)
+      },
+      {
+        path:'register',
+        data:{breadcrumb:{alias:'Register'}},
+        component:RegisterComponent,
+        loadChildren:() => import('./modules/client/pages/register/register.module')
+        .then(m => m.RegisterModule)
+      },
       {path:'test-error',component:TestErrorComponent},
       {path:'not-found',component:NotFoundErrorComponent},
       {path:'server-error',component:ServerErrorPageComponent},
       {path:'maintenance',component:MaintenanceComponent},
     ],
-  },
-  {
-    path:'login',
-    component:LoginComponent,
-    loadChildren:() => import('./modules/client/pages/login/login.module')
-    .then(m => m.LoginModule)
-  },
-  {
-    path:'register',
-    component:RegisterComponent,
-    loadChildren:() => import('./modules/client/pages/register/register.module')
-    .then(m => m.RegisterModule)
   },
   {path:"**",component:NotFoundErrorComponent}
 ];

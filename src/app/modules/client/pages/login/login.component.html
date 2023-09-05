@@ -1,6 +1,6 @@
 <div class="login-container animated fadeInDown bootstrap snippets bootdeys">
   <div class="loginbox bg-white">
-    <div class="loginbox-title">SIGN IN</div>
+    <div class="loginbox-title">Sign In</div>
     <div class="loginbox-social">
       <div class="social-title">Connect with Your Social Accounts</div>
       <div class="social-buttons">
@@ -20,56 +20,13 @@
       <div class="or">OR</div>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="loginbox-textbox">
-        <input type="text" 
-        [class.is-invalid]="
-        loginForm.get('email')?.invalid
-        && loginForm.get('email')?.touched
-        "
-        formControlName="email" 
-        class="form-control" 
-        placeholder="Email" />
-        <div 
-        *ngIf="loginForm.get('email')?.errors?.['required']"
-        class="invalid-feedback">Please enter a email address!</div>
-        <div 
-        *ngIf="loginForm.get('email')?.errors?.['email']"
-        class="invalid-feedback">Invalid email address!</div>
-      </div>
-     
-      <div class="loginbox-textbox">
-      <input 
-      type="password" 
-      formControlName="password" 
-      [class.is-invalid]="
-        loginForm.get('password')?.invalid
-        && loginForm.get('password')?.touched
-        "
-      class="form-control" 
-      placeholder="Password" 
-      />
-      <div 
-      *ngIf="loginForm.get('password')?.errors?.['required']"
-      class="invalid-feedback">Please enter a password!</div>
-      <div 
-      *ngIf="loginForm.get('password')?.errors?.['password']"
-      class="invalid-feedback">Invalid password!</div>
-      </div>
-      <div class="loginbox-submit">
-        <input type="submit" class="btn btn-primary btn-block" value="Login" />
+      <app-text-input [label]="'Email Address'"  [formControl]="loginForm.controls['email']"></app-text-input>
+        <app-text-input [label]="'Password'" [formControl]="loginForm.controls['password']" [type]="'password'"></app-text-input>
+        <div class="mx-5 mt-2">
+        <input type="submit"  [disabled]="loginForm.invalid" class="btn btn-primary btn-block" value="Login" />
       </div>
     </form>
-    <div class="loginbox-forgot"><a href="">Forgot Password?</a></div>
-  
-    <div class="row w-100 ms-5 mt-2">
-      <p>Form Status: {{loginForm.status}}</p>
-      <p>Email Status: {{loginForm.get('email')?.status}}</p>
-      <p>Email Touched: {{loginForm.get('email')?.touched}}</p>
-      <p>Form dirty: {{loginForm.get('email')?.dirty}}</p>
-    <pre>{{loginForm.value | json}}</pre>
-  </div>
-
-
+    <div class="loginbox-forgot loginbox-textbox"><a>Forgot Password?</a></div>
   </div>
   
 </div>

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from  '@angular/common/http';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,10 +11,7 @@ import { TypeheadComponent } from './modules/client/components/typehead/typehead
 import { TabComponent } from './modules/client/components/tab/tab.component';
 import { AlertComponent } from './modules/client/components/alert/alert.component';
 import { DatetimepickerComponent } from './modules/client/components/datetimepicker/datetimepicker.component';
-import { DropdownComponent } from './modules/client/components/dropdown/dropdown.component';
 import { LayoutModule } from './modules/client/layout/layout.module';
-import { RegisterModule } from './modules/client/pages/register/register.module';
-import { LoginModule } from './modules/client/pages/login/login.module';
 import { TestErrorComponent } from './shared/pages/test-error/test-error.component';
 import { NotFoundErrorComponent } from './shared/pages/not-found-error/not-found-error.component';
 import { MaintenanceComponent } from './shared/pages/maintenance/maintenance.component';
@@ -23,11 +19,11 @@ import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
-import { BasketService } from './services/basket.service';
 import { CartSummaryComponent } from './modules/client/components/cart-summary/cart-summary.component';
 import { CartItemComponent } from './modules/client/components/cart-item/cart-item.component';
-import { ProfileComponent } from './modules/client/pages/profile/profile.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
+import { CheckoutComponent } from './modules/client/pages/checkout/checkout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +44,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    SharedModule,
     NgxSpinnerModule.forRoot({type: 'ball-atom'}),
     BrowserAnimationsModule,
     LayoutModule,

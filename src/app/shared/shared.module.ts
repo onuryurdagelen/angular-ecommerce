@@ -4,23 +4,24 @@ import { ServerErrorPageModule } from './pages/server-error-page/server-error-pa
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { SectionHeaderComponent } from './components/section-header/section-header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TextInputComponent } from './components/text-input/text-input.component';
 
 @NgModule({
   declarations: [
-    SectionHeaderComponent
+    SectionHeaderComponent,
+    TextInputComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     ServerErrorPageModule,
+    ReactiveFormsModule,
     BreadcrumbModule
   ],
   exports:[
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     ServerErrorPageModule,
-    SectionHeaderComponent
+    SectionHeaderComponent,
+    TextInputComponent
   ]
 })
 export class SharedModule { }

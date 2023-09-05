@@ -11,6 +11,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfileModule } from '../pages/profile/profile.module';
 import { RegisterModule } from '../pages/register/register.module';
 import { LoginModule } from '../pages/login/login.module';
+import { CheckoutModule } from '../pages/checkout/checkout.module';
 const routes:Routes = [
   {
     path: '',
@@ -31,11 +32,13 @@ const routes:Routes = [
     ProductIndexModule,
     ProfileModule,
     ProductItemModule,
+    HomeModule,
+    CheckoutModule,
     SharedModule,
-    HomeModule
   ],
   exports: [
-    LayoutComponent
+    LayoutComponent,
+    SharedModule
   ],
 })
 export class LayoutModule { }

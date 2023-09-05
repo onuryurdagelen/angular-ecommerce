@@ -1,6 +1,6 @@
 <div class="login-container animated fadeInDown bootstrap snippets bootdeys">
   <div class="loginbox bg-white">
-    <div class="loginbox-title">REGISTER</div>
+    <div class="loginbox-title">Sign Up</div>
     <div class="loginbox-social">
       <div class="social-title">Connect with Your Social Accounts</div>
       <div class="social-buttons">
@@ -19,24 +19,21 @@
       <div class="or-line"></div>
       <div class="or">OR</div>
     </div>
-    <form  (ngSubmit)="onSubmit()">
-      <div class="loginbox-textbox">
-        <label for="fullName" class="text-muted">Full Name</label>
-        <input type="text" class="form-control mt-1" id="fullName" placeholder="Full Name" />
-      </div>
-      <div class="loginbox-textbox">
-        <label for="email" class="text-muted">Email</label>
-        <input type="text" class="form-control mt-1"  id="email" placeholder="Email" />
-      </div>
-      <div class="loginbox-textbox">
-        <label for="password" class="text-muted">Password</label>
-        <input type="text" class="form-control mt-1" id="password" placeholder="Password" />
-      </div>
-      <div class="loginbox-submit">
-        <input type="button" class="btn btn-primary btn-block" value="Register" />
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <app-text-input [label]="'Display Name'"  [formControl]="registerForm.controls['displayName']"></app-text-input>
+      <app-text-input [label]="'Email Address'"  [formControl]="registerForm.controls['email']"></app-text-input>
+      <app-text-input [label]="'Password'" [formControl]="registerForm.controls['password']" [type]="'password'"></app-text-input>
+      
+      <ul class="text-danger list-unstyled" *ngIf="errors">
+        <li class="mx-2" *ngFor="let error of errors">
+          *{{error}}
+        </li>
+      </ul>
+      
+      <div class="mx-5">
+        <input type="submit"  [disabled]="registerForm.invalid" class="btn btn-primary btn-block" value="Register" />
       </div>
     </form>
-    
   </div>
   
 </div>

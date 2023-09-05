@@ -47,7 +47,7 @@ export class BasketService extends ShopService {
   }
 
   addItemToBasket(item:ProductToReturnDto,quantity = 1){
-    debugger;
+
     const itemToAdd:IBasketItem = this.mapProductItemToBasketItem(item);
     const basket = this.getCurrentBasketValue() ?? this.createBasket();
     console.log(basket);
@@ -85,7 +85,6 @@ export class BasketService extends ShopService {
     return basketItems;
   }
   private createBasket():Basket{
-    debugger;
     const basket = new Basket();
     localStorage.setItem('basket_id',basket.id);
     return basket;

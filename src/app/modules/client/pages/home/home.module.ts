@@ -9,7 +9,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
   declarations: [HomeComponent],
   imports: [
     CommonModule,
-    SharedModule,
     CarouselModule.forRoot()
   ],
   exports:[HomeComponent]

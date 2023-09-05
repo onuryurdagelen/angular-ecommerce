@@ -9,7 +9,6 @@ import { DashboardModule } from '../pages/dashboard/dashboard.module';
   declarations: [],
   imports: [
     CommonModule,
-    SharedModule,
     DashboardModule
   ]
 })
